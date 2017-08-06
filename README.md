@@ -8,6 +8,10 @@ android直播送礼动画效果控件
 - 感谢[DyncKathline][1]
 - 本项目基于[DyncKathline][1]的直播送礼动效控件[LiveGiftLayout][2]
 
+### Preview
+
+![image](https://github.com/wilsonchouu/LiveGiftView/blob/master/screenshot/screenshot.gif?raw=true) 
+
 ### Updates
 
 - 整理代码、更改api

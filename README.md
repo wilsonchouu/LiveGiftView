@@ -22,8 +22,8 @@ Grab via Maven:
 ```xml
 <repositories>
 	<repository>
-	    <id>jitpack.io</id>
-	    <url>https://www.jitpack.io</url>
+		<id>jitpack.io</id>
+		<url>https://www.jitpack.io</url>
 	</repository>
 </repositories>
 ```

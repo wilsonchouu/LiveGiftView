@@ -1,8 +1,13 @@
-### 前言
+# LiveGiftView
+礼物动效控件
 
-- 感谢[DyncKathline][1]
-- 本项目基于[DyncKathline][1]的直播送礼动效控件[LiveGiftLayout][2]
-- 最近在开发一款直播app，一直苦于实现直播送礼动效，在毫无思绪查找资料的情况下找到了个不错的轮子，故提取下来进行一些精简和拓展，更好的使用到项目中。项目地址：[LiveGiftView][3]
+[项目链接](https://github.com/wilsonchouu/LiveGiftView)
+
+### Preface
+
+- 感谢[DyncKathline](https://github.com/DyncKathline)
+- 本项目基于礼物动效控件[LiveGiftLayout](https://github.com/DyncKathline/LiveGiftLayout)构建
+- 对于直播类app，一个好的礼物动效控件无疑会增色不少，在寻找思路的时候偶然发现个不错的轮子，故提取下来进行一些精简和拓展。
 
 ### Preview
 
@@ -17,27 +22,8 @@
 
 ### Download
 
-Grab via Maven:
-
-```xml
-<repositories>
-	<repository>
-		<id>jitpack.io</id>
-		<url>https://www.jitpack.io</url>
-	</repository>
-</repositories>
+Gradle:
 ```
-and
-```xml
-<dependency>
-    <groupId>com.github.wilsonchouu</groupId>
-    <artifactId>LiveGiftView</artifactId>
-    <version>1.0.1</version>
-</dependency>
-```
-
-or Gradle:
-```groovy
 allprojects {
 	repositories {
 		...
@@ -46,11 +32,9 @@ allprojects {
 }
 ```
 and
-```groovy
+```
 dependencies {
-    compile('com.github.wilsonchouu:LiveGiftView:1.0.1') {
-        exclude group: 'com.android.support'
-    }
+	compile 'com.github.wilsonchouu:LiveGiftView:1.0.2'
 }
 ```
 
@@ -102,7 +86,3 @@ GiftModel giftModel = new GiftModel();
 // set data to giftModel...
 giftController.loadGift(giftModel);
 ```
-
-[1]:https://github.com/DyncKathline
-[2]:https://github.com/DyncKathline/LiveGiftLayout
-[3]:https://github.com/wilsonchouu/LiveGiftView

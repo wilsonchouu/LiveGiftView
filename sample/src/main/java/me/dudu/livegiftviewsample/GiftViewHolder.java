@@ -22,7 +22,7 @@ import me.dudu.livegiftview.GiftModel;
 public class GiftViewHolder extends AbsGiftViewHolder {
 
     private RelativeLayout rlInfo;
-    private ImageView ivAvatar, ivGift, ivLight;
+    private ImageView ivAvatar, ivGift;
     private TextView tvNickname, tvInfo;
     private TextView tvGiftNumber;
 
@@ -34,7 +34,6 @@ public class GiftViewHolder extends AbsGiftViewHolder {
         tvNickname = (TextView) rootView.findViewById(R.id.tv_nickname);
         tvInfo = (TextView) rootView.findViewById(R.id.tv_info);
         ivGift = (ImageView) rootView.findViewById(R.id.iv_gift);
-        ivLight = (ImageView) rootView.findViewById(R.id.iv_light);
         tvGiftNumber = (TextView) rootView.findViewById(R.id.tv_gift_number);
         return rootView;
     }
@@ -52,11 +51,6 @@ public class GiftViewHolder extends AbsGiftViewHolder {
     @Override
     public TextView getGiftNumberView() {
         return tvGiftNumber;
-    }
-
-    @Override
-    public ImageView getGiftLightView() {
-        return ivLight;
     }
 
     @Override

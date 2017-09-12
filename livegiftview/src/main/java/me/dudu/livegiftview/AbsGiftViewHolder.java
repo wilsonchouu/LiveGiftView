@@ -32,8 +32,6 @@ public abstract class AbsGiftViewHolder {
      */
     public abstract TextView getGiftNumberView();
 
-    public abstract ImageView getGiftLightView();
-
     /**
      * 设置布局信息、加载数据
      */

@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group = 'com.github.wilsonchouu'
-version = '1.0'
 
 android {
     compileSdkVersion 25
@@ -20,12 +19,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.3.1'
 }
 
 tasks.withType(JavaCompile) {
@@ -38,10 +38,11 @@ task sourcesJar(type: Jar) {
 }
 
 task javadoc(type: Javadoc) {
-    failOnError  false
+    failOnError false
     source = android.sourceSets.main.java.sourceFiles
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
     classpath += configurations.compile
+    options.encoding "UTF-8"
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {

@@ -3,7 +3,6 @@ package me.dudu.livegiftview;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -43,7 +42,7 @@ public class GiftController {
      * @param hideMode    礼物列表展示完成后是否向上移动隐藏
      * @return
      */
-    public GiftController appendGiftFrameLayout(@NonNull GiftFrameLayout frameLayout, AbsGiftViewHolder holder, ICustomerAnimation animation, boolean hideMode) {
+    public GiftController appendGiftFrameLayout(GiftFrameLayout frameLayout, AbsGiftViewHolder holder, ICustomerAnimation animation, boolean hideMode) {
         int size = mGiftLayoutList.size();
         frameLayout.setIndex(size);
         frameLayout.initGiftLayout();

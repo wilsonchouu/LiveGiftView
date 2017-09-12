@@ -18,7 +18,6 @@ public class CustomerAnimation1 implements ICustomerAnimation {
     @Override
     public AnimatorSet giftEnterAnimation(final GiftFrameLayout giftFrameLayout, final AbsGiftViewHolder viewHolder) {
         viewHolder.getGiftImageView().setVisibility(View.INVISIBLE);
-        viewHolder.getGiftLightView().setVisibility(View.INVISIBLE);
         viewHolder.getGiftNumberView().setVisibility(View.INVISIBLE);
         //布局飞入
         ObjectAnimator animator1 = GiftAnimationUtil.createTranslationXAnimator(viewHolder.getGiftContainerView(), -giftFrameLayout.getWidth(), 0, 400, new OvershootInterpolator());
@@ -39,7 +38,6 @@ public class CustomerAnimation1 implements ICustomerAnimation {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                GiftAnimationUtil.startAnimationDrawable(viewHolder.getGiftLightView());
                 viewHolder.getGiftNumberView().setVisibility(View.VISIBLE);
                 giftFrameLayout.startNumberComboAnimation();
             }

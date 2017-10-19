@@ -11,9 +11,9 @@ import android.widget.TextView;
 /**
  * Author : zhouyx
  * Date   : 2017/8/2
- * Description :
+ * Description : 礼物动画工具类
  */
-public class GiftAnimationUtil {
+public class GiftAnimationUtils {
 
     /**
      * 礼物飞入动画 - 创建一个从左到右的飞入动画
@@ -44,16 +44,6 @@ public class GiftAnimationUtil {
             animationDrawable.start();
         }
         return animationDrawable;
-    }
-
-    /**
-     * 设置帧动画
-     *
-     * @param target   target
-     * @param drawable drawable
-     */
-    public static void setAnimationDrawable(ImageView target, AnimationDrawable drawable) {
-        target.setBackground(drawable);
     }
 
     /**

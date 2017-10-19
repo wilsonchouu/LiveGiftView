@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/button_auto"
@@ -19,32 +19,48 @@
             android:id="@+id/button_add_single"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="30dp"
             android:text="添加礼物" />
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <me.dudu.livegiftview.GiftFrameLayout
-            android:id="@+id/layout_gift_1"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <me.dudu.livegiftview.GiftAnimationLayout
+                android:id="@+id/layout_gift_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <me.dudu.livegiftview.GiftAnimationLayout
+                android:id="@+id/layout_gift_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+
+            <me.dudu.livegiftview.GiftAnimationLayout
+                android:id="@+id/layout_gift_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_boom"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Boom !!!"
+            android:textColor="#0076ff"
+            android:textSize="60sp"
+            android:visibility="gone" />
 
-        <me.dudu.livegiftview.GiftFrameLayout
-            android:id="@+id/layout_gift_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
-        <me.dudu.livegiftview.GiftFrameLayout
-            android:id="@+id/layout_gift_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

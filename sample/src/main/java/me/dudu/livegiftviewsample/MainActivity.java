@@ -1,19 +1,23 @@
 package me.dudu.livegiftviewsample;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import me.dudu.livegiftview.CustomerAnimation1;
-import me.dudu.livegiftview.CustomerAnimation2;
+import me.dudu.livegiftview.DefaultAnimation1;
+import me.dudu.livegiftview.DefaultAnimation2;
+import me.dudu.livegiftview.GiftAnimationLayout;
 import me.dudu.livegiftview.GiftController;
-import me.dudu.livegiftview.GiftFrameLayout;
-import me.dudu.livegiftview.GiftModel;
 
 
 /**
@@ -47,36 +51,70 @@ public class MainActivity extends AppCompatActivity {
         buttonAddSingle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addOneGift();
+                addOneGift(10);
             }
         });
 
-        GiftFrameLayout giftLayout1 = (GiftFrameLayout) findViewById(R.id.layout_gift_1);
-        GiftFrameLayout giftLayout2 = (GiftFrameLayout) findViewById(R.id.layout_gift_2);
-        GiftFrameLayout giftLayout3 = (GiftFrameLayout) findViewById(R.id.layout_gift_3);
-        giftController.appendGiftFrameLayout(giftLayout1, new GiftViewHolder(), null, true)
-                .appendGiftFrameLayout(giftLayout2, new GiftViewHolder(), new CustomerAnimation1(), true)
-                .appendGiftFrameLayout(giftLayout3, new GiftViewHolder(), new CustomerAnimation2(), false);
+        GiftAnimationLayout layout1 = (GiftAnimationLayout) findViewById(R.id.layout_gift_1);
+        GiftAnimationLayout layout2 = (GiftAnimationLayout) findViewById(R.id.layout_gift_2);
+        GiftAnimationLayout layout3 = (GiftAnimationLayout) findViewById(R.id.layout_gift_3);
+        giftController.append(layout1, new GiftViewHolder(), null, true)
+                .append(layout2, new GiftViewHolder(), new DefaultAnimation1(), true)
+                .append(layout3, new GiftViewHolder(), new DefaultAnimation2(), false);
+
+        final TextView tvBoom = (TextView) findViewById(R.id.tv_boom);
+        GiftAnimationLayout.OnAnimationListener listener = new GiftAnimationLayout.OnAnimationListener() {
+            @Override
+            public void onGiftAnimationStart() {
+
+            }
+
+            @Override
+            public void onGiftAnimationCombo(int comboNumber) {
+                if (comboNumber != 10) {
+                    return;
+                }
+                PropertyValuesHolder anim1 = PropertyValuesHolder.ofFloat("scaleX", 1.2f, 0.8f, 1f);
+                PropertyValuesHolder anim2 = PropertyValuesHolder.ofFloat("scaleY", 1.2f, 0.8f, 1f);
+                PropertyValuesHolder anim3 = PropertyValuesHolder.ofFloat("alpha", 1.0f, 0f, 1f);
+                ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(tvBoom, anim1, anim2, anim3).setDuration(400);
+                animator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        tvBoom.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        tvBoom.setVisibility(View.GONE);
+                    }
+                });
+                animator.start();
+            }
+
+            @Override
+            public void onGiftAnimationEnd() {
+
+            }
+        };
+        layout1.setOnAnimationListener(listener);
+        layout2.setOnAnimationListener(listener);
+        layout3.setOnAnimationListener(listener);
     }
 
-    private void addOneGift() {
-        ExtraMessage extras = new ExtraMessage();
-        extras.setGiftName("礼物名字");
-        extras.setGiftPic("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1501678191127&di=dd1b154f64d46a54082ee4b1944d081e&imgtype=0&src=http%3A%2F%2Fup.qqjia.com%2Fz%2Fface01%2Fface06%2Ffacejunyong%2Fjunyong04.jpg");
-        extras.setSenderName("吕靓茜");
-        extras.setSenderAvatar("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1501678220360&di=d93efac20abb715dd571a11f9def7a2b&imgtype=0&src=http%3A%2F%2Fimg.jsqq.net%2Fuploads%2Fallimg%2F150111%2F1_150111080328_19.jpg");
+    private void addOneGift(int giftCount) {
+        MyGiftModel model = new MyGiftModel();
+        model.setGiftName("礼物名字");
+        model.setGiftPic("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1501678191127&di=dd1b154f64d46a54082ee4b1944d081e&imgtype=0&src=http%3A%2F%2Fup.qqjia.com%2Fz%2Fface01%2Fface06%2Ffacejunyong%2Fjunyong04.jpg");
+        model.setSenderName("吕靓茜");
+        model.setSenderAvatar("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1501678220360&di=d93efac20abb715dd571a11f9def7a2b&imgtype=0&src=http%3A%2F%2Fimg.jsqq.net%2Fuploads%2Fallimg%2F150111%2F1_150111080328_19.jpg");
 
-        int giftNumber = new Random(System.currentTimeMillis()).nextInt(10);
-        giftNumber = giftNumber == 0 ? 1 : giftNumber;
-        GiftModel giftModel = new GiftModel();
-        giftModel.setGiftId(new Random(System.currentTimeMillis()).nextInt() + "")
-                .setGiftCount(giftNumber)
-                .setSenderId(new Random(System.currentTimeMillis()).nextInt() + "")
-                .setSendGiftTime(System.currentTimeMillis())
-//                .setStartComboNumber(giftNumber)//由n开始进行连击计数
-                .setStartComboNumber(0)
-                .setExtras(extras);
-        giftController.loadGift(giftModel);
+        model.setCount(giftCount);
+        model.setGiftId(new Random(System.currentTimeMillis()).nextInt() + "");
+        model.setSendId(new Random(System.currentTimeMillis()).nextInt() + "");
+        model.setSendTime(System.currentTimeMillis());
+//        extras.setStartComboCount(0);//由n开始进行连击计数
+        giftController.addGift(model);
     }
 
     private void startAutoGiftTimer() {
@@ -87,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        addOneGift();
+                        int giftCount = new Random(System.currentTimeMillis()).nextInt(10);
+                        addOneGift(giftCount == 0 ? 1 : giftCount);
                     }
                 });
             }

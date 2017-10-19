@@ -3,68 +3,44 @@ package me.dudu.livegiftview;
 /**
  * Author : zhouyx
  * Date   : 2017/8/2
- * Description :
+ * Description : 礼物数据抽象类
  */
-public class GiftModel {
-    private String giftId;//礼物的id
-    private int giftCount;//发送礼物的数量
-    private String senderId;//发礼物者的id
-    private long sendGiftTime;//发送礼物的时间
-    private int startComboNumber;//如果n不为0，则从n开始连击动画直至到n+发送礼物的数量
-    private Object extras;//额外信息
+public abstract class GiftModel {
 
-    public String getGiftId() {
-        return giftId;
+    private int count;//发送礼物的数量
+    private long sendTime;//发送礼物的时间
+    private int startComboCount;//如果startComboCount不为0，则从startComboCount开始计数连击动画直至到startComboCount + count
+
+    public int getCount() {
+        return count;
     }
 
-    public GiftModel setGiftId(String giftId) {
-        this.giftId = giftId;
-        return this;
+    public void setCount(int count) {
+        this.count = count;
     }
 
-    public int getGiftCount() {
-        return giftCount;
+    public long getSendTime() {
+        return sendTime;
     }
 
-    public GiftModel setGiftCount(int giftCount) {
-        this.giftCount = giftCount;
-        return this;
+    public void setSendTime(long sendTime) {
+        this.sendTime = sendTime;
     }
 
-    public String getSenderId() {
-        return senderId;
+    public int getStartComboCount() {
+        return startComboCount;
     }
 
-    public GiftModel setSenderId(String senderId) {
-        this.senderId = senderId;
-        return this;
+    public void setStartComboCount(int startComboCount) {
+        this.startComboCount = startComboCount;
     }
 
-    public long getSendGiftTime() {
-        return sendGiftTime;
-    }
-
-    public GiftModel setSendGiftTime(long sendGiftTime) {
-        this.sendGiftTime = sendGiftTime;
-        return this;
-    }
-
-    public int getStartComboNumber() {
-        return startComboNumber;
-    }
-
-    public GiftModel setStartComboNumber(int startComboNumber) {
-        this.startComboNumber = startComboNumber;
-        return this;
-    }
-
-    public Object getExtras() {
-        return extras;
-    }
-
-    public GiftModel setExtras(Object extras) {
-        this.extras = extras;
-        return this;
-    }
+    /**
+     * 返回一个唯一标志位，用于判断是否同一个人发的同一件礼物，用于连击判断
+     * 一般可以使用发送人id + 礼物id的组合
+     *
+     * @return
+     */
+    public abstract String getPrimaryKey();
 
 }

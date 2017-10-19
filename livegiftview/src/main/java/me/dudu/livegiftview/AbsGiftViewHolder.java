@@ -8,19 +8,19 @@ import android.widget.TextView;
 /**
  * Author : zhouyx
  * Date   : 2017/8/2
- * Description :
+ * Description : 礼物布局抽象类
  */
 public abstract class AbsGiftViewHolder {
 
     /**
      * 初始化布局
      */
-    public abstract View initGiftView(Context context);
+    public abstract void initGiftView(Context context);
 
     /**
-     * 最外层布局
+     * 礼物布局
      */
-    public abstract View getGiftContainerView();
+    public abstract View getGiftView();
 
     /**
      * 礼物图片控件
@@ -33,7 +33,7 @@ public abstract class AbsGiftViewHolder {
     public abstract TextView getGiftNumberView();
 
     /**
-     * 设置布局信息、加载数据
+     * 设置布局信息
      */
     public abstract void loadGiftModelToView(Context context, GiftModel giftModel);
 

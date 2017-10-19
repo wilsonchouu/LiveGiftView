@@ -26,7 +26,7 @@ allprojects {
 and
 ```
 dependencies {
-    compile 'com.github.wilsonchouu:LiveGiftView:1.0.2'
+    compile 'com.github.wilsonchouu:LiveGiftView:1.1.0'
 }
 ```
 
